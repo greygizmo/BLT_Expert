@@ -70,7 +70,10 @@ export const AI_MODELS = {
   GPT_4O_MINI: "gpt-4o-mini",
   PERPLEXITY_SMALL: "sonar",
   PERPLEXITY_LARGE: "sonar-pro",
+<<<<<<< HEAD
   GEMINI_PRO: "gemini-pro",
+=======
+>>>>>>> 637ba90264d4694a948d5174d61962f853324e19
   GEMINI_FLASH_WEB: "gemini-2.0-flash-exp",
   GEMINI_FLASH_THINKING: "gemini-2.0-flash-thinking-exp-01-21",
 } as const;
@@ -161,6 +164,7 @@ export function parseJsonResponse(response: string): any {
   }
 }
 
+<<<<<<< HEAD
 /**
  * Generates a response using Google's Gemini model
  * @param prompt The text prompt to send to Gemini
@@ -182,6 +186,8 @@ async function generateGeminiResponse(
   }
 }
 
+=======
+>>>>>>> 637ba90264d4694a948d5174d61962f853324e19
 export async function generateChatCompletion(
   messages: Array<{ role: "user" | "system" | "assistant"; content: string }>,
   model: AIModel = "O1",
@@ -190,11 +196,22 @@ export async function generateChatCompletion(
   try {
     const modelId = AI_MODELS[model];
 
+<<<<<<< HEAD
     // Handle Gemini models
     if (modelId.includes("gemini")) {
       // Convert messages array to a single prompt string for Gemini
       const prompt = messages.map(m => `${m.role}: ${m.content}`).join('\n');
       return await generateGeminiResponse(prompt, modelId);
+=======
+    // Handle Gemini models directly
+    if (modelId.includes("gemini")) {
+      const geminiResp = await generateGeminiWebResponse(
+        messages,
+        model,
+        false,
+      );
+      return geminiResp.text;
+>>>>>>> 637ba90264d4694a948d5174d61962f853324e19
     }
 
     // Handle OpenAI and Perplexity models
